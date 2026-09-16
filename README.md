@@ -1,7 +1,3 @@
-# cybersecurity-lab
-Laboratório de Cibersegurança com foco em redes.
-Estudos, projetos e documentações de ferramentas como Nmap, Wireshark e técnicas de pentest em ambiente controlado.
-
 # 🔍 Scan de Portas com Nmap - Roteador Doméstico
 
 ## 📌 Objetivo
