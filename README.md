@@ -37,8 +37,7 @@ credenciais.
 •FTP (21): Pode permitir transferência de
 arquivos sem criptografia.
 
-• SMB (445): Alvo comum de ransomwares (ex:Recomendações
-WannaCry).
+• SMB (445): Alvo comum de ransomwares.
 
 •UPnP (1900): Pode permitir que dispositivos
 abram portas no roteador sem autorização.
