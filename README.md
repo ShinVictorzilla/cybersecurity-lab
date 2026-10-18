@@ -173,3 +173,60 @@ By adding the `-sV` flag, Nmap successfully grabbed the service banners and iden
 * [ ] Run an Operating System detection scan (`sudo nmap -O scanme.nmap.org`) to map the exact kernel version.
 * [ ] Cross-reference the discovered versions (OpenSSH 6.6.1p1 and Apache 2.4.7) with a vulnerability database like Exploit-DB or NIST NVD.
 
+
+
+
+# 🌐 Network Reconnaissance Lab: Operating System Detection
+
+> **Note:** Scan performed against `scanme.nmap.org` (Authorized Nmap testing server).
+
+## 🎯 Target Information
+
+* **Domain:** `scanme.nmap.org`
+
+* **IPv4 Address:** `45.33.32.156`
+
+* **Objective:** Utilize TCP/IP stack fingerprinting to identify the target's operating system, kernel version, and network distance.
+
+* **Scan Duration:** 259.40 seconds (~4.3 minutes)
+
+## 🛠️ Command Execution
+
+To perform OS detection, the `-O` flag was used. This scan requires raw socket privileges, hence the use of `sudo`:
+
+```bash
+sudo nmap -O scanme.nmap.org
+
+```
+
+## 📊 Terminal Output
+
+```text
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-10-18 00:45 -03
+Nmap scan report for scanme.nmap.org (45.33.32.156)
+Host is up (0.19s latency).
+Not shown: 997 closed tcp ports (reset)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+9929/tcp open  nping-echo
+Aggressive OS guesses: Linux 5.0 (95%), Linux 5.0 - 5.4 (95%), HP P2000 G3 NAS device (93%), Linux 4.15 - 5.8 (93%), Linux 5.3 - 5.4 (93%), Linux 2.6.32 (92%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 20 hops
+
+```
+
+## 🧠 Technical Analysis & Findings
+
+Based on the TCP/IP stack fingerprinting, the following insights were gathered:
+
+| Finding | Details | Security Context | 
+| ----- | ----- | ----- | 
+| **Operating System** | **Linux (Kernel 5.x)** | Although an exact match was not found, the heuristic analysis indicates a 95% probability that the underlying OS is a modern Linux distribution. | 
+| **Network Distance** | **20 hops** | The packet traversed 20 routing devices to reach the destination. Useful for network topology mapping and TTL (Time-To-Live) analysis. | 
+| **Scan Limitations** | **Non-ideal conditions** | The lack of a 100% match suggests that a firewall or packet filter is dropping specific probes required for a complete OS fingerprint, a standard security practice on public-facing servers. | 
+
+## 🏁 Conclusion of Reconnaissance Phase
+
+By combining standard port scanning (`nmap`), service version detection (`-sV`), and OS detection (`-O`), we successfully profiled the target surface, confirming it is a Linux-based server running OpenSSH 6.6.1p1 and Apache 2.4.7 on ports 22 and 80, respectively.
+
